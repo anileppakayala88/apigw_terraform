@@ -9,3 +9,7 @@ variable "content" {
 variable "env" {
   default = "QA"
 }
+
+variable "ACCOUNTID" {
+  default = "012029368059"
+}
