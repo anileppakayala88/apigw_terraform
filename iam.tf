@@ -18,10 +18,12 @@ resource "aws_iam_role" "lambda_execution_role" {
 data "aws_iam_policy_document" "dynamo_policy" {
   statement {
     effect = "Allow"
-    actions = ["dynamodb:GetItem"]
+    actions = ["dynamodb:Scan",
+              "dynamodb:PutItem",
+              "dynamodb:Update*"]
     resources = ["arn:aws:dynamodb:eu-east-1:012029368059:table/my_terrafrom_table"]
   }
-  
+
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_execution_role" {
@@ -37,7 +39,7 @@ resource "aws_iam_role_policy_attachment" "dynamodb_access_role" {
 }
 
 resource "aws_iam_role_policy" "lamdba_dynamo_policy" {
-  name = "lamdba_dynamo_policy"
-  role = aws_iam_role.lambda_execution_role.name
+  name   = "lamdba_dynamo_policy"
+  role   = aws_iam_role.lambda_execution_role.name
   policy = data.aws_iam_policy_document.dynamo_policy.json
 }

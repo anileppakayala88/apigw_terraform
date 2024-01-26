@@ -5,17 +5,21 @@ def lambda_handler(event, context):
     
     # Initialize DynamoDB client
     dynamodb = boto3.resource('dynamodb')
-    
-    # Specify the DynamoDB table name
-    #table_name = 'my_terrafrom_table'
-    table = dynamodb.Table('my_terrafrom_table')
-    
-    resp = table.get_item(
-       Key={
-           'ID': '1'
-       }
-    )
-    print(resp['Item'])
-    return {
-        'body': json.dumps(resp['Item'])
-    }
+    try:          
+            # Specify the DynamoDB table name
+            #table_name = 'my_terrafrom_table'
+            table = dynamodb.Table('my_terrafrom_table')
+            # value = event['body']
+            resp = table.scan()
+
+            print(resp['Items'])
+            return {
+                'body': json.dumps(resp['Items'])
+                # 'body': json.dumps(value)
+            }
+    except Exception as e:
+        print(e)
+        return {
+            'statusCode': 500,
+            'body': json.dumps('Error')
+        }
