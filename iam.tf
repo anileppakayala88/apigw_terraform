@@ -12,7 +12,6 @@ resource "aws_iam_role" "lambda_execution_role" {
       }
     ]
   })
-
 }
 
 data "aws_iam_policy_document" "dynamo_policy" {
@@ -23,7 +22,6 @@ data "aws_iam_policy_document" "dynamo_policy" {
               "dynamodb:Update*"]
     resources = ["arn:aws:dynamodb:eu-east-1:012029368059:table/my_terrafrom_table"]
   }
-
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_execution_role" {

@@ -84,10 +84,10 @@ resource "aws_lambda_permission" "apigw_update_lambda" {
 ########################################
 
 resource "aws_api_gateway_deployment" "api_deploy" {
-  depends_on = [aws_api_gateway_integration.integration]
-
-  # "aws_api_gateway_integration.post_integration"
-
+  depends_on = [
+    aws_api_gateway_integration.integration,
+    aws_api_gateway_integration.post_integration
+    ]
   rest_api_id = aws_api_gateway_rest_api.api.id
   stage_name  = "QA"
 }
