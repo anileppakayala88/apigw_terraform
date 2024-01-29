@@ -83,7 +83,7 @@ resource "aws_lambda_permission" "apigw_update_lambda" {
 ############  Deployment  ##############
 ########################################
 
-resource "aws_api_gateway_deployment" "api" {
+resource "aws_api_gateway_deployment" "api_deploy" {
   depends_on = [aws_api_gateway_integration.integration]
 
   # "aws_api_gateway_integration.post_integration"
