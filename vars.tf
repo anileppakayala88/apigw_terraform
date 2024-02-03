@@ -11,5 +11,5 @@ variable "env" {
 }
 
 variable "ACCOUNTID" {
-  default = "012029368059"
+  default = "Replaece with your ID"
 }

@@ -20,7 +20,7 @@ data "aws_iam_policy_document" "dynamo_policy" {
     actions = ["dynamodb:Scan",
               "dynamodb:PutItem",
               "dynamodb:Update*"]
-    resources = ["arn:aws:dynamodb:us-east-1:012029368059:table/my_terrafrom_table"]
+    resources = ["arn:aws:dynamodb:us-east-1:${var.ACCOUNTID}:table/my_terrafrom_table"]
   }
 }
 
